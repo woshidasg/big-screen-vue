@@ -1,0 +1,23 @@
+#index {
+  color: #d3d6dd;
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  transform-origin: left top;
+  overflow: hidden;
+  
+  .bg {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 0;
+    background-image: url("@/assets/pageBg.png");
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .host-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

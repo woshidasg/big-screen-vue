@@ -1,0 +1,150 @@
+.panel-content {
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.map-controls {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.area-tabs {
+  display: flex;
+  border: 1px solid rgba(87, 199, 255, 0.8);
+  border-radius: 4px;
+  background-color: #001f54;
+  min-width: 180px;
+  
+  .tab {
+    padding: 5px 15px;
+    color: #fff;
+    border-right: 1px solid rgba(87, 199, 255, 0.8);
+  }
+  
+  .selector-text {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    color: #fff;
+    cursor: pointer;
+    flex: 1;
+    justify-content: space-between;
+    min-width: 120px;
+    
+    .arrow-icon {
+      font-size: 8px;
+      color: #fff;
+      margin-left: 10px;
+      transform: rotate(180deg);
+      
+      &.arrow-up {
+        transform: rotate(0);
+      }
+    }
+  }
+}
+
+.selector-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 1px;
+  background: #001f54;
+  border: 1px solid rgba(87, 199, 255, 0.8);
+  color: #fff;
+  z-index: 100;
+}
+
+.dropdown-content {
+  display: flex;
+  height: auto;
+}
+
+.dropdown-column {
+  width: 140px;
+  max-height: 300px;
+  border-right: 1px solid rgba(87, 199, 255, 0.8);
+  overflow-y: auto;
+  
+  &:last-child {
+    border-right: none;
+  }
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+  &:hover {
+    background-color: rgba(87, 199, 255, 0.2);
+  }
+  
+  &.active {
+    background-color: rgba(87, 199, 255, 0.2);
+  }
+  
+  .radio-circle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-right: 8px;
+    position: relative;
+    box-sizing: border-box;
+    
+    &.selected {
+      background-color: #3fdaff;
+      border-color: #3fdaff;
+    }
+  }
+  
+  .arrow {
+    position: absolute;
+    right: 15px;
+    color: #fff;
+  }
+}
+
+.map-container {
+  flex: 1;
+  width: 100%;
+  background-color: transparent;
+  border-radius: 4px;
+  position: relative;
+  z-index: 10;
+}
+
+.bottom-bg-02,
+.bottom-bg-03 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bottom-bg-02 {
+  z-index: 1;
+}
+
+.bottom-bg-03 {
+  z-index: 2;
+}

@@ -1,0 +1,99 @@
+.left-panel-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chart-item {
+  width: 100%;
+  height: 32%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  background-color: rgba(3, 25, 58, 0.8);
+  border: 1px solid rgba(1, 95, 255, 0.3);
+  border-radius: 4px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  .chart-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background-image: url("@/assets/bg-1-title.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    border-bottom: 1px solid rgba(1, 95, 255, 0.3);
+    
+    .chart-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      position: relative;
+      z-index: 2;
+      
+      .title-icon {
+        margin-right: 35px;
+      }
+    }
+  }
+  
+  .chart-content {
+    height: calc(100% - 40px);
+    padding: 10px;
+    box-sizing: border-box;
+    
+    .ring-chart, .bar-chart, .horizontal-bar-chart {
+      width: 100%;
+      height: calc(100% - 25px);
+    }
+    
+    .ring-chart {
+      width: 100%;
+      height: calc(100% - 25px);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* 修改树状图样式 */
+    .bar-chart, .horizontal-bar-chart {
+      .bar {
+        width: 16px;
+        height: 102px;
+        background: linear-gradient(0deg, rgba(6,45,110,0.64), rgba(25,102,198,0.75), rgba(88,167,255,0.8));
+      }
+    }
+    
+    /* 背包物资状态样式 */
+    .supply-info {
+      margin-top: 5px;
+      text-align: center;
+      
+      .supply-item {
+        display: inline-block;
+        background-color: rgba(3, 19, 52, 0.7);
+        padding: 5px 10px;
+        border-radius: 4px;
+        
+        .supply-label {
+          color: #ffffff;
+          font-size: 14px;
+          margin-right: 5px;
+        }
+        
+        .supply-value {
+          color: #4fc3f7;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+} 
