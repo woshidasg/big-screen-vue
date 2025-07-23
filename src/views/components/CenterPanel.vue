@@ -287,6 +287,27 @@ export default {
       window.addEventListener('resize', () => {
         this.chart && this.chart.resize();
       });
+
+      // 新增：绑定地图点击事件
+      this.chart.off('click'); // 先解绑，防止重复绑定
+      this.chart.on('click', async (params) => {
+        // 只处理地图区域点击（seriesType: 'map'）
+        if (params.seriesType === 'map') {
+          // 省级地图，点击市
+          if (mapName === 'zhejiang') {
+            const city = this.cities.find(c => c.label === params.name);
+            if (city) {
+              await this.selectCity(city);
+            }
+          } else if (this.selectedCity && this.districts.length > 0) {
+            // 市级地图，点击区县
+            const district = this.districts.find(d => d.label === params.name);
+            if (district) {
+              await this.selectDistrict(district);
+            }
+          }
+        }
+      });
     },
     getMapData(mapName) {
       // 根据地图类型返回不同的数据
