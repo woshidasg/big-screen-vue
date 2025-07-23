@@ -70,11 +70,11 @@
       <div class="chart-content">
         <div class="legend-info">
           <div class="legend-item">
-            <span class="legend-color blue"></span>
+            <span class="legend-color orange"></span>
             <span>物资调拨</span>
           </div>
           <div class="legend-item">
-            <span class="legend-color orange"></span>
+            <span class="legend-color blue"></span>
             <span>健康事件</span>
           </div>
         </div>
@@ -560,145 +560,87 @@ export default {
       if (this.$refs.resourceChart) {
         this.resourceChart = this.$echarts.init(this.$refs.resourceChart)
         const option = {
-          backgroundColor: 'transparent',
-          grid: {
-            top: 20,
-            left: 40,
-            right: 30,
-            bottom: 20,
-            containLabel: true
-          },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
               type: 'shadow'
-            },
-            backgroundColor: 'rgba(0,19,52,0.8)',
-            borderColor: 'rgba(0,209,255,0.3)',
-            textStyle: {
-              color: '#fff'
-            },
-            formatter: function(params) {
-              let result = `${params[0].name}<br/>`;
-              params.forEach(param => {
-                let marker = `<span style="display:inline-block;margin-right:5px;border-radius:2px;width:10px;height:10px;background-color:${param.color};"></span>`;
-                result += `${marker} ${param.seriesName}: ${param.value}${param.seriesName === '健康事件' ? '个' : '批'}<br/>`;
-              });
-              return result;
             }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
           },
           xAxis: {
             type: 'category',
             data: ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00'],
             axisLine: {
               lineStyle: {
-                color: 'rgba(255, 255, 255, 0.5)'
+                color: '#ffffff'
               }
             },
             axisLabel: {
               color: '#ffffff',
-              fontSize: 12,
-              margin: 10
+              fontSize: 13
             }
           },
-          yAxis: [
-            {
-              type: 'value',
-              name: '数量',
-              nameTextStyle: {
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontSize: 12,
-                padding: [0, 0, 0, 30]
-              },
-              min: 0,
-              max: 20,
-              interval: 4,
-              axisLine: {
-                lineStyle: {
-                  color: 'rgba(255, 255, 255, 0.5)'
-                }
-              },
-              axisLabel: {
-                color: '#ffffff',
-                fontSize: 12
-              },
-              splitLine: {
-                lineStyle: {
-                  color: 'rgba(255, 255, 255, 0.1)',
-                  type: 'dashed'
-                }
+          yAxis: {
+            type: 'value',
+            max: 20,
+            axisLine: {
+              lineStyle: {
+                color: '#ffffff'
               }
+            },
+            splitLine: {
+              lineStyle: {
+                color: 'rgba(255, 255, 255, 0.1)'
+              }
+            },
+            axisLabel: {
+              color: '#ffffff'
             }
-          ],
+          },
           series: [
             {
               name: '物资调拨',
               type: 'line',
-              z: 10,
               data: [5, 8, 12, 15, 18, 16, 13],
               smooth: true,
               symbol: 'circle',
               symbolSize: 8,
               itemStyle: {
-                color: '#1976d2',
+                color: '#ff6d00', // orange
                 borderColor: '#fff',
                 borderWidth: 1,
-                shadowColor: 'rgba(25, 118, 210, 0.8)',
+                shadowColor: 'rgba(255, 109, 0, 0.8)',
                 shadowBlur: 10
               },
               lineStyle: {
-                color: {
-                  type: 'linear',
-                  x: 0,
-                  y: 0,
-                  x2: 0,
-                  y2: 1,
-                  colorStops: [{
-                    offset: 0,
-                    color: '#42a5f5'
-                  }, {
-                    offset: 1,
-                    color: '#1976d2'
-                  }]
-                },
+                color: '#ff6d00',
                 width: 3,
-                shadowColor: 'rgba(25, 118, 210, 0.5)',
+                shadowColor: 'rgba(255, 109, 0, 0.5)',
                 shadowBlur: 10
               },
-              areaStyle: {
-                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: 'rgba(25, 118, 210, 0.6)' },
-                  { offset: 0.8, color: 'rgba(25, 118, 210, 0.1)' }
-                ]),
-                shadowColor: 'rgba(25, 118, 210, 0.2)',
-                shadowBlur: 20
-              }
+              // no areaStyle
             },
             {
               name: '健康事件',
               type: 'bar',
-              barWidth: '20px',
-              data: [3, 0, 4, 0, 3, 2, 5],
+              data: [3, 2, 6, 4, 7, 5, 8],
+              barWidth: '16px',
               itemStyle: {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: 'rgba(255, 145, 0, 0.9)' },
-                  { offset: 0.5, color: 'rgba(255, 109, 0, 0.75)' },
-                  { offset: 1, color: 'rgba(230, 81, 0, 0.6)' }
-                ]),
-                borderRadius: [4, 4, 0, 0],
-                shadowColor: 'rgba(255, 109, 0, 0.5)',
-                shadowBlur: 10
+                  { offset: 0, color: 'rgba(88,167,255,0.8)' },
+                  { offset: 0.5, color: 'rgba(25,102,198,0.75)' },
+                  { offset: 1, color: 'rgba(6,45,110,0.64)' }
+                ])
               },
-              emphasis: {
-                itemStyle: {
-                  color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                    { offset: 0, color: 'rgba(255, 145, 0, 1)' },
-                    { offset: 0.5, color: 'rgba(255, 109, 0, 0.85)' },
-                    { offset: 1, color: 'rgba(230, 81, 0, 0.7)' }
-                  ]),
-                  shadowColor: 'rgba(255, 109, 0, 0.8)',
-                  shadowBlur: 20
-                }
+              label: {
+                show: true,
+                position: 'top',
+                color: '#ffffff'
               }
             }
           ]

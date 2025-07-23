@@ -28,14 +28,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="person in filteredPersonnel" :key="person.id">
-                <td>{{ person.name }}</td>
-                <td :class="getVitalClass(person.heartRate, 'heartRate')">{{ person.heartRate }}</td>
-                <td :class="getVitalClass(person.oxygen, 'oxygen')">{{ person.oxygen }}</td>
-                <td :class="getVitalClass(person.temperature, 'temperature')">{{ person.temperature }}</td>
-                <td :class="person.status === '正常' ? 'normal' : 'warning'">{{ person.status }}</td>
-                <td>{{ person.updateTime }}</td>
-              </tr>
+              <template v-if="filteredPersonnel.length === 0">
+                <tr>
+                  <td colspan="6" class="no-data">暂无生命体征详情</td>
+                </tr>
+              </template>
+              <template v-else>
+                <tr v-for="person in filteredPersonnel" :key="person.id">
+                  <td>{{ person.name }}</td>
+                  <td :class="getVitalClass(person.heartRate, 'heartRate')">{{ person.heartRate }}</td>
+                  <td :class="getVitalClass(person.oxygen, 'oxygen')">{{ person.oxygen }}</td>
+                  <td :class="getVitalClass(person.temperature, 'temperature')">{{ person.temperature }}</td>
+                  <td :class="person.status === '正常' ? 'normal' : 'warning'">{{ person.status }}</td>
+                  <td>{{ person.updateTime }}</td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -98,4 +105,7 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/vitalSignsModal.scss';
 
+.vital-signs-modal {
+  // 可在此处添加局部样式优化
+}
 </style> 
