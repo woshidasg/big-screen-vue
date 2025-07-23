@@ -71,6 +71,9 @@
 
 <script>
 import * as echarts from 'echarts';
+const bodyTemperatureIcon = require('@/assets/icons/body-temperature.svg');
+const heartRateIcon = require('@/assets/icons/heart-rate.svg');
+const bloodOxygenIcon = require('@/assets/icons/blood-oxygen.svg');
 
 export default {
   name: 'CenterPanel',
@@ -174,16 +177,16 @@ export default {
               const temp = (Math.random() * 1 + 36.3).toFixed(1); // 36.3-37.3之间
               return `<div style="padding: 8px; min-width: 150px;">
                 <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; text-align: center; color: #fff;">${data.name}</div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="color: #a0aec0;">心率:</span>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; align-items: center;">
+                  <span style="color: #a0aec0; display: flex; align-items: center;"><img src='${heartRateIcon}' style='width:24px;height:24px;margin-right:4px;vertical-align:middle;'/>心率:</span>
                   <span style="color: ${heartRate > 85 ? '#ff4d4f' : '#52c41a'}; font-weight: bold;">${heartRate} 次/分</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="color: #a0aec0;">血氧:</span>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; align-items: center;">
+                  <span style="color: #a0aec0; display: flex; align-items: center;"><img src='${bloodOxygenIcon}' style='width:24px;height:24px;margin-right:4px;vertical-align:middle;'/>血氧:</span>
                   <span style="color: ${oxygen < 96 ? '#ff4d4f' : '#52c41a'}; font-weight: bold; text-align: right;">${oxygen}%</span>
                 </div>
-                <div style="display: flex; justify-content: space-between;">
-                  <span style="color: #a0aec0;">体温:</span>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: #a0aec0; display: flex; align-items: center;"><img src='${bodyTemperatureIcon}' style='width:24px;height:24px;margin-right:4px;vertical-align:middle;'/>体温:</span>
                   <span style="color: ${temp > 37 ? '#ff4d4f' : '#52c41a'}; font-weight: bold; text-align: right;">${temp}°C</span>
                 </div>
               </div>`;
