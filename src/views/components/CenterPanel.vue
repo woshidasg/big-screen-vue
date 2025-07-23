@@ -55,10 +55,12 @@
     <!-- 添加右下角图例 -->
     <div class="legend-container">
       <div class="legend-item">
-        <div class="legend-icon">
-          <div class="icon-circle" style="background-color: #3b97f7;"></div>
-        </div>
+        <img :src="require('@/assets/emergency-personnel.png')" alt="应急人员" style="width: 32px; height: 32px; margin-right: 10px;" />
         <div class="legend-text">应急人员</div>
+      </div>
+      <div class="legend-item">
+        <img :src="require('@/assets/backpack.png')" alt="应急背包" style="width: 32px; height: 32px; margin-right: 10px;" />
+        <div class="legend-text">应急背包</div>
       </div>
     </div>
     
@@ -155,7 +157,9 @@ export default {
     },
     renderMap(mapName) {
       if (!this.chart) return;
-      
+      // PNG 图标路径
+      const emergencyPersonnelIcon = require('@/assets/emergency-personnel.png');
+      const backpackIcon = require('@/assets/backpack.png');
       const option = {
         backgroundColor: 'transparent',
         tooltip: {
@@ -168,7 +172,6 @@ export default {
               const heartRate = Math.floor(Math.random() * 30) + 60; // 60-90之间
               const oxygen = Math.floor(Math.random() * 5) + 95; // 95-99之间
               const temp = (Math.random() * 1 + 36.3).toFixed(1); // 36.3-37.3之间
-              
               return `<div style="padding: 8px; min-width: 150px;">
                 <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; text-align: center; color: #fff;">${data.name}</div>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
@@ -184,6 +187,8 @@ export default {
                   <span style="color: ${temp > 37 ? '#ff4d4f' : '#52c41a'}; font-weight: bold; text-align: right;">${temp}°C</span>
                 </div>
               </div>`;
+            } else if (params.seriesName === '应急背包') {
+              return `<div style='padding: 8px; min-width: 100px; color: #fff;'>${params.data.name}</div>`;
             } else {
               return params.name;
             }
@@ -240,45 +245,45 @@ export default {
             geoIndex: 0,
             data: this.getMapData(mapName)
           },
-          // 添加应急人员标记 - 修改为effectScatter以增强可见性
+          // 应急人员点位
           {
             name: '应急人员',
             type: 'scatter',
             coordinateSystem: 'geo',
             geoIndex: 0,
             zlevel: 20,
-            label: {
-              show: false // 不显示标签
-            },
-            symbol: 'circle',
-            symbolSize: 18,
-            showEffectOn: 'none',
+            label: { show: false },
+            symbol: `image://${emergencyPersonnelIcon}`,
+            symbolSize: 22,
             itemStyle: {
-              color: '#ffffff',
-              borderColor: '#3b97f7',
-              borderWidth: 3,
-              opacity: 1,
-              shadowBlur: 15,
-              shadowColor: '#3b97f7'
+              opacity: 1
             },
             emphasis: {
-              scale: 1.2,
-              itemStyle: {
-                color: '#ffffff',
-                borderColor: '#3b97f7',
-                borderWidth: 3,
-                shadowBlur: 20,
-                shadowColor: '#3b97f7'
-              }
+              scale: 1.2
             },
             data: this.getEmergencyPersonnelData(mapName)
+          },
+          // 应急背包点位
+          {
+            name: '应急背包',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            geoIndex: 0,
+            zlevel: 22,
+            label: { show: false },
+            symbol: `image://${backpackIcon}`,
+            symbolSize: 20,
+            itemStyle: {
+              opacity: 1
+            },
+            emphasis: {
+              scale: 1.2
+            },
+            data: this.getBackpackData(mapName)
           }
         ]
       };
-      
       this.chart.setOption(option, true);
-      
-      // 监听窗口大小变化，重新调整地图大小
       window.addEventListener('resize', () => {
         this.chart && this.chart.resize();
       });
@@ -495,6 +500,23 @@ export default {
         return [hangzhouDistrictsData[mapName]];
       }
 
+      return [];
+    },
+    // 新增：获取应急背包数据
+    getBackpackData(mapName) {
+      // 示例数据，可根据实际需求调整
+      if (mapName === 'zhejiang') {
+        return [
+          { name: '应急背包A', value: [120.10, 30.20, 100] },
+          { name: '应急背包B', value: [120.30, 30.25, 90] }
+        ];
+      }
+      if (mapName === 'hangzhou') {
+        return [
+          { name: '应急背包A', value: [120.15, 30.22, 100] },
+          { name: '应急背包B', value: [120.25, 30.28, 90] }
+        ];
+      }
       return [];
     }
   }

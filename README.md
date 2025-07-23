@@ -21,8 +21,7 @@
 
 ## 效果展示
 
-![项目截图](placeholder.png "项目截图")
-*请在此处替换为您的项目截图*
+![项目截图](src/assets/screenshot.png "大屏数据可视化效果图")
 
 ## ✨ 功能特性
 
@@ -31,6 +30,8 @@
 - **屏幕自适应**: 使用 CSS3 `scale` 方案，支持不同分辨率屏幕的自适应显示。
 - **模块化**: 清晰的项目结构，将视图、组件、API 和状态管理分离。
 - **Vue 生态**: 整合 `Vue Router` 进行路由管理，`Vuex` 进行状态管理。
+- **地理信息可视化**: 使用 ECharts 地图组件，支持省市区三级联动地图展示，提供区域下钻功能。
+- **应急指挥定位**: 在地图上标记应急人员位置，展示关键健康数据如心率、血氧和体温，辅助应急指挥决策。
 
 ## 🛠️ 技术栈
 
@@ -40,6 +41,7 @@
 - **数据可视化**:
   - [Apache ECharts](https://echarts.apache.org/zh/index.html)
   - [@jiaminghi/data-view](http://datav.jiaminghi.com/)
+- **地图数据**: [阿里云DataV GeoAtlas](https://datav.aliyun.com/portal/school/atlas/area_selector) 提供的地理数据
 - **HTTP 请求**: [Axios](https://axios-http.com/)
 - **CSS 预处理器**: [Sass](https://sass-lang.com/)
 - **图标**: [Vue-Awesome](https://github.com/Justineo/vue-awesome)
@@ -115,6 +117,17 @@ ECharts 的配置可以参考 [ECharts 官方示例](https://echarts.apache.org/
 ### 数据请求
 
 项目中预配置了 `axios` 用于数据请求。建议在 `src/api` 目录下创建和管理您的 API 请求。
+
+### 地图配置
+
+项目中的地图组件支持省市区三级联动，使用阿里云DataV提供的地理数据。您可以在`src/views/components/CenterPanel.vue`文件中：
+
+- 修改`provinces`数组添加更多省份
+- 调整地图样式和交互效果
+- 配置显示的地图标记点
+- 自定义地图悬浮提示框内容
+
+地图标记点支持显示关键指标数据，如心率、血氧和体温等实时监控数据。
 
 ## 🤝 贡献
 

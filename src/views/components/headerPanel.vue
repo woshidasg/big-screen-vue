@@ -5,7 +5,7 @@
       <img src="@/assets/ai-animation.png" class="ai-icon" />
     </div>
     <div class="title">
-      <span class="title-text">应急背包一张图</span>
+      <span class="title-text">应急人员追踪大屏</span>
     </div>
     <div class="right-section">
       <div class="fullscreen-btn" @click="toggleFullScreen" :class="{ 'active': isFullScreen }">
